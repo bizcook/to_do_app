@@ -1,3 +1,8 @@
+body{
+  background-image: url('http://i.giphy.com/5YPxceb8mkptm.gif');
+
+   background-repeat: repeat;
+}
 h1{
   color: red;
 }

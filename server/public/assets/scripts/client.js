@@ -1,6 +1,8 @@
 $(document).ready(function(){
   console.log('this works');
   $('#taskForm').on('submit', postTasks);
+  $('#taskForm').find('input[type=text]').val('');
+  getChores();
 });
 
 function postTasks(event) {
@@ -32,9 +34,21 @@ function getChores() {
   });
 }
 
+//this appends the chore and delete button to the DOM. the delete button only affects its particular chore
+//now figure out a way to make the delete button an id to also change the DB
 function choresAppendDom (choresArray) {
   console.log('inside appenddom after GET call', choresArray);
+
   for (var i = 0; i < choresArray.length; i++) {
-    $('.displayTasks').append('<li>' + choresArray[i].chore + '</li>')
+    $('.displayTasks').append('<div class = "tasks"></div>');
+    var $el = $('.displayTasks').children().last();
+    $el.append('<li>' + choresArray[i].chore + '</li>');
+    $el.append('<button class = "delete">REMOVE</button>');
   }
+
+  function deleteChore () {
+    $(this).parent().remove();
+  }
+
+  $('.displayTasks').on('click', '.delete', deleteChore);
 }
