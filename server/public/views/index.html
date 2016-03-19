@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TO-DO LIST</title>
+    <!-- STYLES -->
+    <link rel="stylesheet" href = "../assets/styles/styles.css" />
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="../vendors/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/scripts/client.js"></script>
+  </head>
+
+  <body>
+    <h1>THINGS ON THE DOCKET</h1>
+
+    <div class="main container">
+
+      <div class="enterTask">
+        <form id="taskForm">
+          <label>Things to do: </label>
+          <input type="text" name="chore" requried placeholder="To Do" />
+          <input id="taskSubmit" type="submit" value="Submit" />
+        </form>
+        <div>
+          <ul class="displayTasks"></ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
