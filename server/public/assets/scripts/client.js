@@ -43,19 +43,37 @@ function choresAppendDom (choresArray) {
   //empty tasks for when new submits are entered. this allows the formdata to not be displayed more than once.
   $('.tasks').remove();
   for (var i = 0; i < choresArray.length; i++) {
-    $('.displayTasks').append('<div class = "tasks"></div>');
+    $('.displayTasks').append('<div class="tasks" data-id='+""+ choresArray[i].id + ">" + "</div>");
     var $el = $('.displayTasks').children().last();
     $el.append('<li>' + choresArray[i].chore + '</li>');
-    $el.append('<button class = "delete">X</button>');
-    $el.append('<button class = "complete">✓</button>');
+    $el.append('<button class="delete" data-id='+""+ choresArray[i].id + ">" + "X</button>");
+    $el.append('<button class="complete" data-id='+""+ choresArray[i].id + ">" + "✓</button>");
+
   }
 
-  $('.displayTasks').on('click', '.delete', deleteChore);
+
+  $('.displayTasks').on('click', '.delete', function(){
+    var id = $(this).data('id');
+    var deleteData = {"id": "" + id};
+    console.log("id", "id");
+      console.log(deleteData);
+    deleteChore(deleteData);
+
+
+  });
 
   $('.displayTasks').on('click', '.complete', completeChore);
 
-  function deleteChore () {
-    $(this).parent().remove();
+  function deleteChore(deleteData){
+    // $(this).parent().remove();
+    //find the id that is on the button and set it to id
+    // console.log("inside deleteChore function before ajax" ,deleteData);
+    $.ajax({
+      type: 'DELETE',
+      url: '/todo',
+      data: deleteData,
+      success: getChores
+    });
   }
 
   function completeChore (){

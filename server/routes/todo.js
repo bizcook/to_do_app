@@ -14,27 +14,27 @@ if (process.env.DATABASE_URL) {
   connectionString = 'postgres://localhost:5432/choresDB';
 }
 
-
-todo.post('/', function(req, res) {
+//delete row from db
+todo.delete('/', function(req, res) {
   console.log('body: ', req.body);
-  var chore = req.body.chore;
+  var id = req.body.id;
 
-  //connect to the database
-  pg.connect(connectionString, function (err, client, done) {
+  // connect to DB
+  pg.connect(connectionString, function(err, client, done){
     if (err) {
       done();
       console.log('Error connecting to DB: ', err);
       res.status(500).send(err);
     } else {
       var result = [];
-      var query = client.query('INSERT INTO chores (chore) VALUES ($1) ' +
-                                'RETURNING id, chore', [chore]);
+      var query = client.query('DELETE FROM chores WHERE id=($1) ' +
+                              'RETURNING id', [id]);
 
-      query.on('row', function (row) {
+      query.on('row', function(row){
         result.push(row);
       });
 
-      query.on('end', function () {
+      query.on('end', function() {
         done();
         res.send(result);
       });
@@ -48,6 +48,7 @@ todo.post('/', function(req, res) {
   });
 });
 
+//post to db
 todo.post('/', function(req, res) {
   console.log('body: ', req.body);
   var chore = req.body.chore;
