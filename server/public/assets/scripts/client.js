@@ -6,6 +6,7 @@ $(document).ready(function(){
 });
 
 function postTasks(event) {
+
   event.preventDefault();
 
   console.log('made it into postTasks function');
@@ -39,6 +40,8 @@ function getChores() {
 function choresAppendDom (choresArray) {
   console.log('inside appenddom after GET call', choresArray);
 
+  //empty tasks for when new submits are entered. this allows the formdata to not be displayed more than once.
+  $('.tasks').remove();
   for (var i = 0; i < choresArray.length; i++) {
     $('.displayTasks').append('<div class = "tasks"></div>');
     var $el = $('.displayTasks').children().last();
