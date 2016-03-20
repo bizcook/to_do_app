@@ -1,8 +1,111 @@
-body{
-  background-image: url('http://i.giphy.com/5YPxceb8mkptm.gif');
-
-   background-repeat: repeat;
-}
 h1{
-  color: red;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  font-family: helvetica;
+  font-weight: 100;
+  font-size: 70px;
+  text-align: center;
+  padding-top: 60px;
+
 }
+body{
+  /*background-image: url('http://i.giphy.com/5YPxceb8mkptm.gif');*/
+  /*background-repeat: no-repeat;
+  background-image: url('gradient.jpg');
+  background-size: 100%;*/
+  /*position: static;*/
+  background: url('gradient.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow:auto;
+  }
+
+}
+
+
+.mainContainer{
+  position: relative;
+  margin: 0 auto;
+  left: 50%;
+}
+
+.enterTask{
+  position: relative;
+  margin: 0 auto;
+  padding: 80px;
+  border: .5px solid white;
+  width: 500px;
+
+}
+
+input{
+  	color: dimgray;
+  	font : 16px Helvetica, futura;
+    border: none;
+
+  }
+
+  .tasks{
+    padding-bottom: 10px;
+    color: white;
+    font-family: helvetica;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  label{
+    font-family: helvetica;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 3px;
+    font-weight: 100;
+    font-size: 18px;
+  }
+  .delete{
+    float: right;
+    display: inline-block;
+    border-radius: 0;
+    background-color: rgba(255,255,255, 0.05);
+    letter-spacing: 1px;
+    border: .5px solid white;
+    color: white;
+    font-size: 10px;
+    font-weight: 100;
+    width: 46px;
+  }
+.complete{
+  float: right;
+  display: inline-block;
+  border-radius: 0;
+  background-color: rgba(255,255,255, 0.05);
+  letter-spacing: 1px;
+  border: .5px solid white;
+  color: white;
+  font-size: 10px;
+  font-weight: 100;
+  width: 46px;
+  margin-right: 8px;
+}
+
+  li{
+    display: inline-block;
+  }
+  #taskSubmit{
+    display: inline-block;
+    float: right;
+    border-radius: 0;
+    background-color: rgba(255,255,255, 0.05);
+    color: white;
+    border: .5px solid white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 100;
+    width: 100px;
+  }
+  .displayTasks{
+    padding-left: 0;
+  }

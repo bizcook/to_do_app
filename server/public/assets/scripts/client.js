@@ -43,7 +43,8 @@ function choresAppendDom (choresArray) {
     $('.displayTasks').append('<div class = "tasks"></div>');
     var $el = $('.displayTasks').children().last();
     $el.append('<li>' + choresArray[i].chore + '</li>');
-    $el.append('<button class = "delete">REMOVE</button>');
+    $el.append('<button class = "delete">x</button>');
+    $el.append('<button class = "complete">✓</button>');
   }
 
   function deleteChore () {
