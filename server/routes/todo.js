@@ -14,6 +14,45 @@ if (process.env.DATABASE_URL) {
   connectionString = 'postgres://localhost:5432/choresDB';
 }
 
+//update completed column to TRUE after complete button clicked
+todo.put('/', function(req, res) {
+  // console.log('body: ', req.body);
+  var id = req.body.id;
+  var complete = req.body.complete;
+
+  // connect to DB
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      done();
+      console.log('Error connecting to DB: ', err);
+      res.status(500).send(err);
+    } else {
+      var result = [];
+      //something is wrong here.. it is setting it to null instead of true
+      var query = client.query('UPDATE chores SET complete = ($1) WHERE id = ($2)',
+                              [true, id]);
+
+      // console.log('this is query', query);
+
+      query.on('row', function(row) {
+        result.push(row);
+      });
+
+      query.on('end', function() {
+        done();
+        res.send(result);
+      });
+
+      query.on('error', function(error){
+        console.log('Error running query:', error);
+        done();
+        res.status(500).send(error);
+      });
+    }
+  });
+});
+
+
 //delete row from db
 todo.delete('/', function(req, res) {
   console.log('body: ', req.body);
@@ -28,7 +67,7 @@ todo.delete('/', function(req, res) {
     } else {
       var result = [];
       var query = client.query('DELETE FROM chores WHERE id=($1) ' +
-                              'RETURNING id', [id]);
+                               'RETURNING id', [id]);
 
       query.on('row', function(row){
         result.push(row);
